@@ -27,10 +27,11 @@ pipeline {
             steps {
                 script {
                     // Pull the hello-world Docker image
-                    sh 'docker pull hello-world'
+                    sh 'docker pull krishnahogale/newimg:latest'
+                        
 
                     // Run the hello-world Docker image
-                   sh 'docker run -d --name hello-world-container hello-world'
+                   sh 'docker run -d --name newimg-container krishnahogale/newimg:latest'
                 }
             }
         }
@@ -40,8 +41,8 @@ pipeline {
         always {
             // Clean up - stop and remove the Docker container
             script {
-                sh 'docker stop hello-world-container'
-                sh 'docker rm hello-world-container'
+                sh 'docker stop newimg-container'
+                sh 'docker rm newimg-container'
             }
         }
     }
