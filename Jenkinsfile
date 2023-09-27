@@ -31,7 +31,7 @@ pipeline {
                         
 
                     // Run the hello-world Docker image
-                   sh 'docker run -d -p 3000:80 --name newimg-container  krishnahogale/newimg:latest'
+                   sh 'docker run -d --name newimg-container  krishnahogale/newimg:latest'
                 }
             }
         }
