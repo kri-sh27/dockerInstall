@@ -5,6 +5,10 @@ pipeline {
         stage('Install Docker') {
             steps {
                 script {
+                    // Configure sudo to not require a password for specific commands
+                    sh 'echo "$(whoami) ALL=(ALL) NOPASSWD: /usr/bin/apt-get, /usr/bin/curl, /usr/bin/install, /usr/bin/gpg, /usr/bin/tee" | sudo tee /etc/sudoers.d/jenkins'
+                    sh 'sudo chmod 440 /etc/sudoers.d/jenkins'
+
                     // Add Docker's official GPG key
                     sh 'sudo apt-get update'
                     sh 'sudo apt-get install -y ca-certificates curl gnupg'
