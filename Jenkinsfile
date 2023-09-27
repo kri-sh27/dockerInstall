@@ -37,15 +37,15 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            // Clean up - stop and remove the Docker container
-            script {
-                // sh 'docker stop newimg-container'
-                // sh 'docker rm newimg-container'
-            }
-        }
-    }
+    // post {
+    //     always {
+    //         // Clean up - stop and remove the Docker container
+    //         script {
+    //             // sh 'docker stop newimg-container'
+    //             // sh 'docker rm newimg-container'
+    //         }
+    //     }
+    // }
 }
 // pipeline {
 //     agent {
