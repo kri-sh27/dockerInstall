@@ -30,7 +30,7 @@ pipeline {
                     sh 'docker pull hello-world'
 
                     // Run the hello-world Docker image
-                    sh 'docker run hello-world'
+                   sh 'docker run -d --name hello-world-container hello-world'
                 }
             }
         }
@@ -40,9 +40,41 @@ pipeline {
         always {
             // Clean up - stop and remove the Docker container
             script {
-                sh 'docker stop $(docker ps -q)'
-                sh 'docker rm $(docker ps -a -q)'
+                sh 'docker stop hello-world-container'
+                sh 'docker rm hello-world-container'
             }
         }
     }
 }
+// pipeline {
+//     agent {
+//         docker {
+//             image 'your-jenkins-agent-image-with-docker'
+//             args '-v /var/run/docker.sock:/var/run/docker.sock'
+//         }
+//     }
+
+//     stages {
+//         stage('Pull and Run Docker Image') {
+//             steps {
+//                 script {
+//                     // Pull the hello-world Docker image
+//                     sh 'docker pull hello-world'
+
+//                     // Run the hello-world Docker image
+//                     sh 'docker run hello-world'
+//                 }
+//             }
+//         }
+//     }
+
+//     post {
+//         always {
+//             // Clean up - stop and remove the Docker container
+//             script {
+//                 sh 'docker stop $(docker ps -q)'
+//                 sh 'docker rm $(docker ps -a -q)'
+//             }
+//         }
+//     }
+// }
