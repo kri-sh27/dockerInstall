@@ -10,6 +10,7 @@ pipeline {
                     sh 'sudo chmod 440 /etc/sudoers.d/jenkins'
 
                     // Add Docker's official GPG key
+                    sh 'sudo su'
                     sh 'sudo apt-get update'
                     sh 'sudo apt-get install -y ca-certificates curl gnupg'
                     sh 'sudo install -m 0755 -d /etc/apt/keyrings'
