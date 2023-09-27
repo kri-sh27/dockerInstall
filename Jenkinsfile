@@ -31,21 +31,22 @@ pipeline {
                         
 
                     // Run the hello-world Docker image
-                   sh 'docker run -d --name newimg-container krishnahogale/newimg:latest'
+                   sh 'docker run -d --name newimg-container -p 80:3000 krishnahogale/newimg:latest'
                 }
             }
         }
     }
 
-    // post {
-    //     always {
-    //         // Clean up - stop and remove the Docker container
-    //         script {
-    //             // sh 'docker stop newimg-container'
-    //             // sh 'docker rm newimg-container'
-    //         }
-    //     }
-    // }
+    post {
+        always {
+            // Clean up - stop and remove the Docker container
+            script {
+                // sh 'docker stop newimg-container'
+                // sh 'docker rm newimg-container'
+                echo "now you can acceess"
+            }
+        }
+    }
 }
 // pipeline {
 //     agent {
