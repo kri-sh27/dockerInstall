@@ -2,26 +2,26 @@ pipeline {
     agent any
 
     stages {
-        stage('Install Docker') {
-            steps {
-                script {
-                    // Add Docker's official GPG key
-                    sh 'sudo su'
-                    sh 'sudo apt-get update'
-                    sh 'sudo apt-get install -y ca-certificates curl gnupg'
-                    sh 'sudo install -m 0755 -d /etc/apt/keyrings'
-                    sh 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg'
-                    sh 'sudo chmod a+r /etc/apt/keyrings/docker.gpg'
+        // stage('Install Docker') {
+        //     steps {
+        //         script {
+        //             // Add Docker's official GPG key
+        //             sh 'sudo su'
+        //             sh 'sudo apt-get update'
+        //             sh 'sudo apt-get install -y ca-certificates curl gnupg'
+        //             sh 'sudo install -m 0755 -d /etc/apt/keyrings'
+        //             sh 'curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg'
+        //             sh 'sudo chmod a+r /etc/apt/keyrings/docker.gpg'
 
-                    // Add the Docker repository to Apt sources
-                    def versionCodename = sh(script: '(. /etc/os-release && echo "$VERSION_CODENAME")', returnStdout: true).trim()
-                    sh 'echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu ${versionCodename} stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null'
+        //             // Add the Docker repository to Apt sources
+        //             def versionCodename = sh(script: '(. /etc/os-release && echo "$VERSION_CODENAME")', returnStdout: true).trim()
+        //             sh 'echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu ${versionCodename} stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null'
 
-                    // Update Apt repository
-                    sh 'sudo apt-get update'
-                }
-            }
-        }
+        //             // Update Apt repository
+        //             sh 'sudo apt-get update'
+        //         }
+        //     }
+        // }
 
         stage('Pull and Run Docker Image') {
             steps {
